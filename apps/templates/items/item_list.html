@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Index{% endblock %}
+{% block active-list %}active{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1>Items list <small>Yes, a list of items.</small></h1>
+</div>
+
+<ul>
+    {% for each in object_list %}
+    <li>
+        <span style="vertical-align: middle;">
+            <code><a href="{% url 'item_detail' each.pk %}">{{ each }}</a></code> -
+        </span>
+        <div class="btn-group">
+            <a class="btn btn-default btn-sm" href="{% url 'item_update' each.pk %}"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+            <a class="btn btn-default btn-sm" href="{% url 'item_delete' each.pk %}"><span class="glyphicon glyphicon-remove-circle"></span> Delete</a> 
+        </div>
+    </li>
+    {% empty %}
+    <p>There are no available items.</p>
+    {% endfor %}
+</ul>
+{% endblock %}

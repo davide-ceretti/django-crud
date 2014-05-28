@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>{% block title %}Welcome{% endblock %} • Basic Crud</title>
+    <link rel="stylesheet" href="/static/css/bootstrap-3.0.min.css" type="text/css" />
+    <link rel="stylesheet" href="/static/css/mine.css" type="text/css" />
+    <script type="text/javascript" src="/static/js/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="/static/js/bootstrap-3.0.js"></script>
+    {% block style %}{% endblock %}
+    {% block script %}{% endblock %}
+    {% block head %}{% endblock %}
+    <script type="text/javascript" src="/static/js/mine-base.js"></script>
+</head>
+
+<body>
+<div id="header">
+    <nav class="navbar navbar-default" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{% url 'index' %}">Mine</a>
+        </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+            <li data-position="bottom" data-intro="Get a list of existing items" class="{% block active-list %}{% endblock %}"><a href="{% url 'item_list' %}"><span class="glyphicon glyphicon-list"></span> Item list</a></li>
+            <li data-position="right" data-intro="Create new items here" class="{% block active-create %}{% endblock %}"><a href="{% url 'item_create' %}"><span class="glyphicon glyphicon-plus-sign"></span> Add item</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a data-position="left" data-intro="Authenticated users only" href="{% url 'secret' %}"><span class="glyphicon glyphicon-gift"></span> Secret</a></li>
+            <li><a data-position="bottom" data-intro="Just some additional informations" href="{% url 'about' %}"><span class="glyphicon glyphicon-question-sign"></span> About</a></li>
+            {% if not user.is_authenticated %}
+            <li><a data-position="bottom" data-intro=":-)" href="{% url 'auth_login' %}"><span class="glyphicon glyphicon-log-in"></span> Log in</a></li>
+            {% else %}
+            <p class="navbar-text">Logged in as <strong>{{ user}}</strong></p>
+            <li><a data-position="bottom" data-intro=":-(" href="{% url 'auth_logout' %}"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
+            {% endif %}
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </nav>
+</div>
+
+<div id="content" class="container">
+    <ul class="messages">
+        {% for message in messages %}
+        <li class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}"><strong>{{ message.tags|capfirst }}</strong> {{ message }}</li>
+        {% endfor %}
+    </ul>
+
+    {% block content %}{% endblock %}
+</div>
+
+<div id="footer">
+<span data-position="top" data-intro="This footer, sooo good!">Copyright © Davide Ceretti - This footer is very good, althought it requires more content!</span>
+</div>
+</body>
+</html>

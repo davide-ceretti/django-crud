@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% load forms %}
+
+{% block title %}{% if object %}Edit{% else %}add{% endif %} item{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1>Delete item <small>Subtext for this header</small></h1>
+</div>
+
+<p>Are you sure you want to delete {{ object }}?</p>
+
+<form enctype="multipart/form-data" method="post">{% csrf_token %}
+    <div class="btn-group">
+        <a class="btn btn-default" href="{% url 'item_list' %}">Cancel</a>
+        <input class="btn btn-danger" type="submit" value="Delete" />
+    </div>
+</form>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% load forms %}
+
+{% block title %}{% if object %}Edit{% else %}add{% endif %} item{% endblock %}
+
+{% block style %}
+<style type="text/css">
+    
+</style>
+{% endblock %}
+{% block content %}
+<div class="page-header">
+  <h1>Item detail <small>{{ object }}</small>
+    <div class="btn-group">
+        <a class="btn btn-default btn" href="{% url 'item_update' object.pk %}"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+        <a class="btn btn-default btn" href="{% url 'item_delete' object.pk %}"><span class="glyphicon glyphicon-remove-circle"></span> Delete</a> 
+    </div>
+  </h1>
+</div>
+
+<p>Some additional details here</p>
+<table class="table">
+    <tr>
+        <td>Created at: </td>
+        <td>{{ object.created }}</td>
+    </tr>
+    <tr>
+        <td>Content: </td>
+        <td>{{ object.content }}</td>
+    </tr>
+</table>
+{% endblock %}

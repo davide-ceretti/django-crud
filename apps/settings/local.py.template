@@ -1,0 +1,56 @@
+try:
+    from apps.settings.default import *
+except ImportError:
+    pass
+
+DEBUG = True
+TEMPLATE_DEBUG = DEBUG
+
+ADMINS = (
+    ('Your name', 'Your email'),
+)
+
+MANAGERS = ADMINS
+
+# Sample db configuration
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'dev.db',                      # Or path to database file if using sqlite3.
+        # The following settings are not used with sqlite3:
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+        'PORT': '',                      # Set to empty string for default.
+    }
+}
+
+# Make this unique, and don't share it with anybody.
+SECRET_KEY = ''
+
+# Optionals
+# ----------------------------------------------------------------------
+# If you would rather not have any of these tools, just comment
+# the appropriate lines
+
+# Django debug toolbar.
+# It helps you analyse database query efficiency, templating issues, 
+# page load times and more.
+# It adds a widget at the top right of avery page.
+# More info at http://git.io/pcqKDQ for more info on Django Debug Toolbar
+INSTALLED_APPS += ('debug_toolbar',)
+MIDDLEWARE_CLASSES += ('debug_toolbar.middleware.DebugToolbarMiddleware',)
+INTERNAL_IPS = ('127.0.0.1',)
+DEBUG_TOOLBAR_CONFIG = {'INTERCEPT_REDIRECTS': False}
+
+# Django-Extensions.
+# It gives you a lot of free stuff, like a smart shell that does an
+# automatic import for all your models or a graph of your DB schema.
+# More info at https://github.com/django-extensions/django-extensions
+INSTALLED_APPS += ('django_extensions',)
+
+# Coverage.
+# After running your tests, it tells you how much code have your tests covered.
+# Usage: coverage run --source='.' manage.py test app1 app2 && coverage report
+# Remember to run it from the directory where manage.py is located.
+# More info at https://pypi.python.org/pypi/coverage

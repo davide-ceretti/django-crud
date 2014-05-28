@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<script type="text/javascript">
+    $(function() {
+        $("#id_username").focus();
+        $("#id_username").val("test");
+        $("#id_password").val("test");
+    });
+</script>
+{% endblock head %}
+
+{% block content %}
+    <div>
+    <form method="post"> {% csrf_token %}
+        <fieldset>
+            <input type="hidden" name="next" value="{{ next }}" />
+            <legend>Login</legend>
+            {% include "form.html" %}
+        </fieldset>
+
+        <div class="form-actions col-sm-offset-2 col-sm-10">
+            <input type="hidden" name="next" value="{% if next %}{{ next }}{% else %}{% url 'index' %}{% endif %}">
+            <input class="btn btn-default" type="submit" value="Login" />
+        </div>
+    </form>
+    </div>
+{% endblock content %}

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Index{% endblock %}
+
+{% block active-index %}active{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="/static/css/chardinjs.css" type="text/css" />
+<script type="text/javascript" src="/static/js/chardinjs.min.js"></script>
+<script type="text/javascript" src="/static/js/mine-rainbow-madness.js"></script>
+{% endblock %}
+
+{% block style %}
+<style type="text/css">
+    .highlight {
+        text-shadow: 4px 4px 10px rgba(48, 50, 50, 0.5);
+    }
+</style>
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript">
+    // Let's test JQuery
+    $(function() {
+        var jquerytest = $('#jquery-test');
+        jquerytest.hover(function() {
+           jquerytest.toggleClass('highlight');
+        });
+    });
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+    <h1><span class="rainbow-madness" data-position="right" data-intro="A badass welcome message">Welcome</span></h1>
+    <p id="jquery-test">You look lost. Maybe you could use some help!</p>
+    <a class="btn btn-default btn-lg chardinjs-trigger">Halp!</a>
+</div>
+{% endblock %}

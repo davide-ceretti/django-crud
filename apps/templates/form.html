@@ -1,0 +1,9 @@
+{% load forms %}
+
+{% include "form_header.html" %}
+
+{% for field in form %}
+    {% if not field.is_hidden %}
+        {% form_field field %}
+    {% endif %}
+{% endfor %}

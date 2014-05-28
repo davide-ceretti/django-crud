@@ -1,0 +1,6 @@
+{% load forms %}
+{% load bootstrap %}
+
+<div class="form-field control-group{% if field.errors %} error{% endif %}">
+    {{ field|bootstrap_horizontal }}
+</div>

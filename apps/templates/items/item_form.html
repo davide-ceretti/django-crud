@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% load forms %}
+
+{% block title %}{% if object %}Edit{% else %}Add{% endif %} item{% endblock %}
+{% if not object %}{% block active-create %}active{% endblock %}{% endif %}
+
+{% block content %}
+<div class="page-header">
+    <h1>{% if object %}Edit{% else %}Add{% endif %} item <small>{% if object %}<small>{{ object }}</small>{% else %}Even babies can do it.{% endif %}</small></h1>
+</div>
+
+<form enctype="multipart/form-data" method="post" class="form" role="form">{% csrf_token %}
+    <fieldset>
+        {% include "form.html" %}
+    </fieldset>
+    <div class="form-actions col-sm-offset-2 col-sm-10">
+    <input class="btn btn-success" type="submit" value="Save" />
+    </div>
+</form>
+
+{% endblock %}

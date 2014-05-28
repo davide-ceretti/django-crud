@@ -1,0 +1,9 @@
+*.pyc
+apps/settings/local.py
+*.log
+logs/
+*.db
+/.project
+/.pydevproject
+*~
+.coverage
