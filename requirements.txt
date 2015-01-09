@@ -5,7 +5,6 @@
 # Please use pip install -r requirements.txt
 Django==1.5.4
 South==0.8.2
-mysql-python
 django-bootstrap-form==3.0 # https://pypi.python.org/pypi/django-bootstrap-form/3.0
 
 # Optional tools
